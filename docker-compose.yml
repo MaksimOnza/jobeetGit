@@ -7,12 +7,12 @@ services:
         volumes:
             - .:/app
         environment:
-            - MYSQL_ROOT_PASSWORD=password
-            - MYSQL_DATABASE=jobeet
-            - MYSQL_USER=user
-            - MYSQL_PASSWORD=password
+            - MYSQL_ROOT_PASSWORD=onza_83
+            - MYSQL_DATABASE=jobeet1
+            - MYSQL_USER=symjobeet
+            - MYSQL_PASSWORD=Casperonza_83
         ports:
-            - 3306:3306
+            - 3307:3307
 
     webserver:
         image: nginx:alpine
