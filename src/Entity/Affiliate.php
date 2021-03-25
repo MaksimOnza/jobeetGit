@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity()
  * @ORM\Table(name="affiliates")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Affiliate
 {
@@ -173,6 +174,14 @@ class Affiliate
         $this->categories->removeElement($category);
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist()
+    */
+    public function prePersist()
+    {
+        $this->createdAt = new \DateTime();
     }
 
 }
