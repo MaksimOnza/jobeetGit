@@ -5,6 +5,7 @@ use App\Entity\Job;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 class JobController extends AbstractController
@@ -14,11 +15,13 @@ class JobController extends AbstractController
      *
      * @return Response
     */
-    public function list() : Response
+    public function list(EntityManagerInterface $em) : Response
     {
-        $jobs = $this->getDoctrine()
-            ->getRepository(Job::class)
-            ->findAll();
+
+        $query = $em->createQuery(
+            'SELECT j FROM App:Job j WHERE j.expiresAt > :date'
+        )->setParameter('date', new \DateTime());
+        $jobs = $query->getResult();
 
         return $this->render('job/list.html.twig', [
             'jobs' => $jobs,
