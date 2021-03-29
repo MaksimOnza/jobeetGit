@@ -1,4 +1,5 @@
-
+.idea/
+migrations/
 docker-compose.yml
 
 ###> symfony/framework-bundle ###

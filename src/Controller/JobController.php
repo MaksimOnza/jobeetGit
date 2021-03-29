@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Job;
 use App\Entity\Category;
+use App\Form\JobType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,5 +45,24 @@ class JobController extends AbstractController
             'job' => $job,
         ]);
     }
+
+    /**
+     * Creates a new job entity.
+     *
+     * @Route("/job/create", name="job.create", methods="GET")
+     *
+     * @return Response
+     */
+    public function create() : Response
+    {
+        $job = new Job();
+        $form = $this->createForm(JobType::class, $job);
+
+        return $this->render('job/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+
 
 }
