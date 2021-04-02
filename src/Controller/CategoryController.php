@@ -31,7 +31,8 @@ class CategoryController extends AbstractController
         Category $category,
         PaginatorInterface $paginator,
         int $page
-    ) : Response {
+    ) : Response
+    {
         $activeJobs = $paginator->paginate(
             $this->getDoctrine()->getRepository(Job::class)->getPaginatedActiveJobsByCategoryQuery($category),
             $page,
@@ -43,4 +44,6 @@ class CategoryController extends AbstractController
             'activeJobs' => $activeJobs,
         ]);
     }
+
+
 }
