@@ -11,27 +11,27 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CategoryType extends AbstractType
 {
-/**
-* @param FormBuilderInterface $builder
-* @param array $options
-*/
-public function buildForm(FormBuilderInterface $builder, array $options)
-{
-$builder->add('name', TextType::class, [
-'constraints' => [
-new NotBlank(),
-new Length(['max' => 100]),
-]
-]);
-}
+    /**
+    * @param FormBuilderInterface $builder
+    * @param array $options
+    */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('name', TextType::class, [
+                'constraints' => [
+                    new NotBlank(),
+                    new Length(['max' => 100]),
+                ]
+            ]);
+    }
 
-/**
-* @param OptionsResolver $resolver
-*/
-public function configureOptions(OptionsResolver $resolver)
-{
-$resolver->setDefaults([
-'data_class' => Category::class,
-]);
-}
+    /**
+    * @param OptionsResolver $resolver
+    */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Category::class,
+        ]);
+    }
 }
